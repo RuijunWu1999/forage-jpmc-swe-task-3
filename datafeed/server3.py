@@ -148,7 +148,13 @@ def generate_csv():
         for t, stock, side, order, size in orders(market()):
             if t > MARKET_OPEN + SIM_LENGTH:
                 break
-            writer.writerow([t, stock, side, order, size])
+            # writer.writerow([t, stock, side, order, size])
+            encodedT = t.encode()
+            encodedStock = stock.encoded()
+            encodedSide = side.encode()
+            encodedOrder = order.encode()
+            encodedSize = size.encode()
+            writer.writerow([encodedT, encodedStock, encodedSide, encodedOrder, encodedSize])
 
 def read_csv():
     """ Read a CSV or order history into a list. """
